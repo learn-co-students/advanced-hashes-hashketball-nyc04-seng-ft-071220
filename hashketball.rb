@@ -1,4 +1,5 @@
 # Write your code below game_hash
+require 'pry'
 def game_hash
   {
     home: {
@@ -127,3 +128,87 @@ def game_hash
 end
 
 # Write code here
+
+#rspec spec/hashketball_spec.rb -e num_points_scored
+def num_points_scored (player_name)
+  game_hash.each{|team, properties|
+  game_hash[team][:players].each{|player|
+  if player[:player_name] === player_name
+    return player[:points]
+  end
+  }  
+}
+end
+
+#rspec spec/hashketball_spec.rb -e shoe_size
+
+def shoe_size(player_name)
+  game_hash.each{|team, properties|
+  game_hash[team][:players].each{|player|
+  if player[:player_name] === player_name
+    return player[:shoe]
+  end
+  }  
+}
+end
+
+#rspec spec/hashketball_spec.rb -e team_colors
+def team_colors(team_name)
+  game_hash.each{|home_or_away,team_properties|
+  if game_hash[home_or_away][:team_name] === team_name
+    return game_hash[home_or_away][:colors]
+  end
+  }
+end
+
+#rspec spec/hashketball_spec.rb -e team_names
+def team_names
+  team_names_array = []
+  game_hash.each{|home_or_away,team_properties|
+  team_names_array << game_hash[home_or_away][:team_name]
+  }
+  team_names_array
+end
+
+#rspec spec/hashketball_spec.rb -e player_numbers
+def player_numbers(team_name)
+  player_numbers_array=[]
+  game_hash.each{|home_or_away,team_properties|
+  game_hash[home_or_away][:players].each{|player|
+  if game_hash[home_or_away][:team_name] === team_name
+    player_numbers_array << player[:number]
+  end
+}
+}
+player_numbers_array
+end
+
+#rspec spec/hashketball_spec.rb -e player_stats
+def player_stats(player_name)
+  game_hash.each{|home_or_away,team_properties|
+  game_hash[home_or_away][:players].each{|player|
+  #binding.pry
+  if player[:player_name] === player_name
+   return player
+  end
+}
+}
+end
+
+# First, find the player with the largest shoe size
+# Then, return that player's number of rebounds
+# Remember to think about return values here.
+#rspec spec/hashketball_spec.rb -e big_shoe_rebounds
+def big_shoe_rebounds
+  max_shoe = -1
+  rebounds = -1
+  game_hash.each{|home_or_away,team_properties|
+  game_hash[home_or_away][:players].each{|player|
+  if max_shoe < player[:shoe]
+    max_shoe = player[:shoe]
+    rebounds = player[:rebounds]
+  end
+}
+}
+rebounds
+end
