@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -127,3 +129,99 @@ def game_hash
 end
 
 # Write code here
+def num_points_scored(player_name)
+  
+  arraylist = game_hash[:home][:players]+game_hash[:away][:players]
+  arraylist.each do |player_stat|
+    player_stat.each do |info,value|
+      if value == player_name
+        return player_stat[:points]
+      end
+    # binding.pry
+    end
+  end
+  
+end
+
+def shoe_size(player_name)
+  
+  arraylist = game_hash[:home][:players]+game_hash[:away][:players]
+  arraylist.each do |player_stat|
+    player_stat.each do |info,value|
+      if value == player_name
+        return player_stat[:shoe]
+      end
+    # binding.pry
+    end
+  end
+  
+end
+
+def team_colors(team_name)
+  game_hash.each do |homeaway, values|
+    values.each do |key, value|
+      if value == team_name
+        return values[:colors]
+        # binding.pry
+      end
+    end
+  end
+end
+
+
+
+def team_names
+  team_name = []
+  team_name.push(game_hash[:home][:team_name],game_hash[:away][:team_name])
+  
+end
+
+
+def player_numbers(team_name)
+  num_collection = []
+  game_hash.each do |homeaway, values|
+    values.each do |key, value|
+      if value == team_name
+        values[:players].each do |stat|
+          num_collection << stat[:number]
+        # binding.pry
+        end 
+      end
+    end
+  end
+  num_collection
+end
+
+
+def player_stats(player_name)
+  
+  arraylist = game_hash[:home][:players]+game_hash[:away][:players]
+  arraylist.each do |player_stat|
+    if player_stat[:player_name] == player_name
+      return player_stat
+    end  
+    # binding.pry
+  end
+  
+end
+
+
+def big_shoe_rebounds
+  maxshoe = 0
+  maxrebound = 0
+  arraylist = game_hash[:home][:players]+game_hash[:away][:players]
+  arraylist.each do |player_stat|
+    if player_stat[:shoe] > maxshoe
+      maxshoe = player_stat[:shoe] 
+      maxrebound = player_stat[:rebounds]
+    end
+    # binding.pry
+  end
+  maxrebound 
+end
+
+
+# binding.pry
+#  puts 0
+
+
