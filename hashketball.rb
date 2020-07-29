@@ -141,6 +141,7 @@ def num_points_scored(player)
 end
 
 
+
 def shoe_size(player)
   game_hash.each do |key, value|
     value[:players].each do |player_stats|
@@ -176,6 +177,8 @@ def team_names
   teamName_array
 end 
 
+
+
 def player_numbers(teamName)
   numbersOFTeam = []
     game_hash.each do |key, value|
@@ -203,6 +206,7 @@ def player_stats(playerName)
     end
   end 
 end 
+
 
 
 def big_shoe_rebounds
@@ -318,3 +322,60 @@ def long_name_steals_a_ton
 end
 puts long_name_steals_a_ton
 # expected: true since highest steals is 33 --> Bismack Biyombo and longest name = Bismack Biyombo
+
+
+
+
+
+# # ALTERNATIVE SOLUTION DRY - ISH 
+
+# #Helper Method # 1
+# def stats_on_a_player(player ,specific_stat )
+#   game_hash.each do |key, value|
+#     value[:players].each do |player_stats|
+
+#       if player_stats[:player_name] == player
+#        return player_stats[specific_stat]        
+#       end       
+
+#     end
+#   end
+# end
+
+
+# def num_points_scored(player)
+#   stats_on_a_player(player, :points)
+# end 
+
+# def shoe_size(player)
+#   stats_on_a_player(player, :shoe)
+# end
+
+# #Helper Method # 2
+# def team_stat(teamName, specific_stat_given, specific_stat_to_return)
+#   numbersOFTeam = []
+#     game_hash.each do |key, value|
+#       value[:players].each do |player_stats|
+
+#         if value[specific_stat_given] == teamName
+#           numbersOFTeam << player_stats[specific_stat_to_return]
+#         end
+#       end 
+#     end
+#   numbersOFTeam
+# end 
+  
+
+# def player_numbers(teamName)
+#   team_stat(teamName, :team_name, :number)
+# end
+
+
+
+
+
+
+
+
+
+
