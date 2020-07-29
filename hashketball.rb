@@ -139,8 +139,6 @@ def num_points_scored(player_name)
   end
  end
 end
-p "Jeff scored these points."
-p num_points_scored("Jeff Adrien")
 
 def shoe_size(sought_player_name)
   game_hash.each do |place, team|
@@ -185,23 +183,20 @@ def player_numbers(team_name)
 nums
 end
 
-def player_stats (sought_player_name)
-  new_hash = {}
-  game_hash.collect do |place, team|
-    team.each do |attribute, data|
-    next unless attribute == :players
-
-    game_hash[place][attribute].each do |player|
-    next unless player[:player_name] == sought_player_name
-
-    new_hash = player.delete_if do |k, v|
-      k == :player_name
+def player_stats(players_name)
+  stats={}
+  game_hash.each do |key,value|
+    value[:players].each do |player_info|
+      if player_info[:player_name] == players_name
+        stats= player_info
+      end
     end
-   end
   end
- end
-new_hash
+  stats
 end
+
+player_stats("Jeff Adrien")
+
 
 def big_shoe_rebounds
   biggest_shoe = 0
