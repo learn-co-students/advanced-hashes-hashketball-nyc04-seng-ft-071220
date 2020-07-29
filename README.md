@@ -9,7 +9,6 @@
 Welcome to the second part of Hashketball. In this lab, you will be implementing
 methods to work with a nested data structure. You've already built the structure
 in the previous lab, so we've provided it for you in this lab.
-
 To recap - your task is to use Ruby to help you perform analysis on an NBA game.
 Process the nested data structure to produce _insights_ about how various
 players performed.
