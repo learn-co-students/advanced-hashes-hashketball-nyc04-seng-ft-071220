@@ -132,39 +132,38 @@ def num_points_scored(player_name)
   if attribute == :players
   data.each do |player|
   if player[:player_name] == player_name
-  return players[:points]
+  return player[:points]
      end
     end
    end
   end
  end
 end
+p "Jeff scored these points."
+p num_points_scored("Jeff Adrien")
 
-def shoe_size(player_name)
-  game_hash each do |place, team|
+def shoe_size(sought_player_name)
+  game_hash.each do |place, team|
   team.each do |attribute, data|
-  if attribute == :players
+  next unless attribute == :players
   data.each do |player|
-  if player[:player_name] == player_name
-  return player[:shoe]
+      return player[:shoe] if player[:player_name] == sought_player_name
       end
      end
     end
    end
-  end
- end
 
 def team_colors(team_name)
   game_hash.each do |place, team|
   if team[:team_name] == team_name
   return team[:colors]
-    end
   end
+ end
 end
 
 def team_names
-  game_hash.map do |place, team|
-  return team[:team_name]
+  game_hash.collect do |place, team|
+    team[:team_name]
   end
 end
 
@@ -178,27 +177,29 @@ def player_numbers(team_name)
 
    data.each do |data|
     nums << data [:number]
+      end
      end
+    end
    end
- end
+  end
 nums
 end
 
-def player_stats(sought_player_name)
+def player_stats (sought_player_name)
   new_hash = {}
   game_hash.collect do |place, team|
     team.each do |attribute, data|
-    if attribute == :players
+    next unless attribute == :players
 
     game_hash[place][attribute].each do |player|
-    if player[:player_name] == sought_player_name
+    next unless player[:player_name] == sought_player_name
 
-    new_hash = player.delete_if do |key, value|
-      key == :player_name
-      end
+    new_hash = player.delete_if do |k, v|
+      k == :player_name
     end
+   end
   end
-end
+ end
 new_hash
 end
 
