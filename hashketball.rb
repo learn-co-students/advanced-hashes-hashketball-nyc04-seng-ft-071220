@@ -272,3 +272,72 @@ end
   #game_hash[:away][:players][3][:points]
 #player with the most points = "Ben Gordon"
   #game_hash[:away][:players][3][:player_name]
+
+#Which team has the most points?
+def winning_team
+  home_team_sum = 0
+  away_team_sum = 0
+  game_hash.each do |team, team_stats|
+    if team_stats[:team_name] == "Brooklyn Nets"
+      team_stats[:players].each do |player_stats|
+        home_team_sum += player_stats[:points]
+      end
+    elsif team_stats[:team_name] == "Charlotte Hornets"
+      team_stats[:players].each do |player_stats|
+        away_team_sum += player_stats[:points]
+      end
+    end
+  end
+  if home_team_sum > away_team_sum
+    game_hash[:home][:team_name]
+  elsif home_team_sum < away_team_sum
+    game_hash[:away][:team_name]
+  end
+end
+
+#winning_team
+#home Brooklyn Nets: 96 vs away Charlotte Hornets: 85
+
+#Which player has the longest name?
+def player_with_longest_name
+  longest_name = 0
+  longest_player_name = nil
+  game_hash.each do |team, team_stats|
+    team_stats[:players].each do |player_stats|
+      if longest_name < player_stats[:player_name].length
+        longest_name = player_stats[:player_name].length
+        longest_player_name = player_stats[:player_name]
+      end
+    end
+  end
+  longest_player_name
+end
+
+#player_with_longest_name
+#p game_hash[:home][:players][0][:player_name].length
+#output should be "Bismack Biyombo"
+
+#returns true if the player with the longest name had the most steals
+#Find out who has the most steals
+#Find the longest name (reference longest_player_name method)
+#Are they equal to e/o?
+def long_name_steals_a_ton?
+  highest_number_steals = 0
+  player_most_steals = nil
+  game_hash.each do |team, team_stats|
+    team_stats[:players].each do |player_stats|
+      if highest_number_steals < player_stats[:steals]
+        highest_number_steals = player_stats[:steals]
+        player_most_steals = player_stats[:player_name]
+      end
+    end
+  end
+  if player_most_steals == player_with_longest_name
+    true
+  else
+    false
+  end
+end
+
+#long_name_steals_a_ton?
+#output should be true
