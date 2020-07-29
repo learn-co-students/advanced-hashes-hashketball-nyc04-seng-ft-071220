@@ -1,3 +1,4 @@
+require 'pry'
 # Write your code below game_hash
 def game_hash
   {
@@ -127,3 +128,89 @@ def game_hash
 end
 
 # Write code here
+def num_points_scored(player_name)
+  game_hash.each do |team_location, team_data|
+    team_data[:players].each do |player|
+      if player[:player_name] == player_name
+        return player[:points]
+      end
+      # binding.pry
+    end
+  end
+end
+
+# def num_points_scored(player_name)
+#   points = 0
+#   game_hash.each do |location, team_data|
+#     team_data[:players].each do |stats|
+#       if stats[:player_name] == player_name
+#         points = stats[:points]
+#       end
+#       # binding.pry
+#     end
+#   end
+#   points
+# end
+
+def shoe_size(player_name)
+  game_hash.each do |team_location, team_data|
+    team_data[:players].each do |player|
+      # binding.pry
+      if player[:player_name] == player_name
+         return player[:shoe]
+      end
+    end
+  end
+end
+
+def team_colors(team_name)
+  if team_name == "Brooklyn Nets"
+    return game_hash[:home][:colors]
+  else team_name == "Charlotte Hornets"
+    return game_hash[:away][:colors]
+  end
+end
+
+def team_names
+  game_hash.map do |team_location, team_data|
+  team_data[:team_name]
+  end
+end
+
+def player_numbers(team_name)
+  jersey_numbers = []
+  game_hash.each do |team_location, team_data|
+    if team_data[:team_name] == team_name
+     team_data[:players].each do |player|
+       jersey_numbers << player[:number]
+      # binding.pry
+     end
+    end
+  end
+  jersey_numbers
+end
+
+def player_stats(player_name)
+  game_hash.each do |team_location, team_data|
+    # binding.pry
+    team_data[:players].each do |player|
+      if player[:player_name] == player_name
+        return player
+      end
+    end
+  end
+end
+
+def big_shoe_rebounds
+  big_shoe = 0
+  rebounds = 0
+  game_hash.each do |team_location, team_data|
+    team_data[:players].each do |player|
+      if player[:shoe] > big_shoe
+        big_shoe = player[:shoe]
+        rebounds = player[:rebounds]
+      end
+    end
+  end
+  return rebounds
+end
