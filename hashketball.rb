@@ -1,4 +1,5 @@
 # Write your code below game_hash
+require 'pry'
 def game_hash
   {
     home: {
@@ -127,3 +128,91 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player)
+ 
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+          next unless attribute == :players
+      data.each do |data_item|
+        return data_item[:points] if data_item[:player_name] == player     
+      end
+    end
+  end
+end
+#  binding.pry
+# 0
+
+def shoe_size(player)
+ 
+  game_hash.each do |location, team_data|
+    team_data.each do |attribute, data|
+          next unless attribute == :players
+      data.each do |data_item|
+        return data_item[:shoe] if data_item[:player_name] == player     
+      end
+    end
+  end
+end
+
+def team_colors(team)
+  game_hash.each do |location, team_data|
+     if team_data[:team_name] == team
+        return team_data[:colors]
+     end
+  end
+end
+
+
+def team_names  
+    game_hash.collect do |location, team_data|
+      team_data[:team_name]
+      # binding.pry
+    end
+end
+
+
+
+def player_numbers(team_name_1)
+  numbers = []
+  game_hash.each do |location, team_data|
+    next unless team_data[:team_name] == team_name_1
+        team_data.each do |player_hash_data, hash_data|
+        next unless player_hash_data == :players
+              hash_data.each do |data|
+              numbers << data[:number]
+            end
+        end
+    end
+  numbers
+end
+
+def player_stats(name)
+  game_hash.map do |location, team_data|
+    team_data[:players].select do |player_data|
+      if player_data[:player_name] == name
+        return player_data
+      binding.pry
+      end
+    end
+  end
+end
+
+
+def big_shoe_rebounds
+  biggest_shoe = 0
+  num_rebounds = 0
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player_data|
+        if player_data[:shoe] > biggest_shoe
+          biggest_shoe = player_data[:shoe]
+          num_rebounds = player_data[:rebounds]
+      end
+    end
+  end
+  num_rebounds
+end
+
+# big_shoe_rebounds()
+# binding.pry
+# 0
