@@ -1,5 +1,9 @@
 # Write your code below game_hash
 require 'pry'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6fe4501eb019c759fa28c125b80ad1e06d99032c
 def game_hash
   {
     home: {
@@ -7,7 +11,7 @@ def game_hash
       colors: ["Black", "White"],
       players: [
         {
-          player_name: "Alan Anderson",
+          player_name: "Alan Andersorubyn",
           number: 0,
           shoe: 16,
           points: 22,
@@ -129,6 +133,7 @@ end
 
 # Write code here
 
+<<<<<<< HEAD
 def num_points_scored(player_search)
   game_hash.each do |team, team_info|
     team_info[:players].each do |player|
@@ -161,3 +166,10 @@ def team_names
     team_info[:team_name]
   end
 end
+=======
+def num_points_scored (player_search)
+  game_hash.each do |keys, team_info|
+binding.pry
+  end
+end
+>>>>>>> 6fe4501eb019c759fa28c125b80ad1e06d99032c
