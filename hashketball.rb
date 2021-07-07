@@ -1,4 +1,5 @@
-# Write your code below game_hash
+
+
 def game_hash
   {
     home: {
@@ -126,4 +127,84 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(specific_player_name)
+  game_hash.each do |k, v|
+    v[:players].each do |stats|
+        if stats[:player_name] == specific_player_name
+          return stats[:points]
+        end
+     end
+  end
+end
+
+#num_points_scored("Kemba Walker")
+#iterate locations within game_hash (location_hash)
+#iterate all the :players within locations (player_hash)
+##if player_hash[:player_name] is equal to specific_player_name,
+#return the player_hash[:points]
+
+
+def shoe_size(specific_player_name)
+  game_hash.each do |k, v| # v = hash
+    v[:players].each do |stats| # stats = hash
+        if stats[:player_name] == specific_player_name
+          return stats[:shoe]
+        end
+     end
+  end
+end
+
+
+def team_colors(team_name)
+    game_hash.each do |k, v|
+      if v[:team_name] == team_name
+        return v[:colors]
+      end
+    end
+end
+
+require 'pry'
+
+
+
+
+def team_names
+ array=[]
+  game_hash.each do |k, v|
+     v[:team_name]
+     array<<v[:team_name]
+  end
+    return array
+end
+
+
+def player_numbers(team)
+  array=[]
+   game_hash.each do |k, v|
+      if v[:team_name] == team
+        v[:players].each do |stats|
+          array<<stats[:number]
+        end
+        return array
+      end
+  end
+end
+
+def player_stats(specific_player_name)
+  game_hash.each do |k, v|
+    v[:players].each do |stats|
+        if stats[:player_name] == specific_player_name
+          return stats
+        end
+     end
+  end
+end
+
+def big_shoe_rebounds
+  all_players = []
+  game_hash.each do |k, v|
+    all_players+= v[:players]
+  end
+  pp all_players
+  return all_players.max_by{|k| k[:shoe]}[:rebounds]
+end
